@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SÁU MÚI — Cẩm Nang Toàn Diện Từ Ăn Uống Đến Tập Luyện</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Special+Elite&family=Stardos+Stencil:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============ VINTAGE WOODCUT / GRAPHIC NOVEL THEME ============ */
+:root{
+  --paper:#f1ebdc;
+  --paper-2:#e9e1cd;
+  --ink:#16130e;
+  --ink-soft:#3b362a;
+  --line:#2a251c;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Special Elite', 'Courier New', monospace;
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.75;
+  font-size:16.5px;
+  -webkit-font-smoothing:antialiased;
+  text-shadow:1px 1px 0 rgba(0,0,0,.05);
+}
+/* ---- paper grain + vignette overlays ---- */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;
+  background:
+    radial-gradient(ellipse at center, transparent 52%, rgba(64,52,28,.20) 100%),
+    radial-gradient(ellipse at 50% 0%, rgba(64,52,28,.10), transparent 60%);
+}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.07;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+::selection{background:var(--ink);color:var(--paper);}
+
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px;}
+
+/* ---- halftone dot helpers ---- */
+.dots{background-image:radial-gradient(circle, var(--ink) 1.3px, transparent 1.45px);background-size:8px 8px;}
+.dots-lg{background-image:radial-gradient(circle, var(--ink) 2.3px, transparent 2.6px);background-size:12px 12px;}
+.dots-sm{background-image:radial-gradient(circle, var(--ink) .75px, transparent .95px);background-size:4.5px 4.5px;}
+.dots-fade{background-image:radial-gradient(circle, var(--ink) 1.1px, transparent 1.25px);background-size:7px 7px;
+  -webkit-mask-image:radial-gradient(ellipse at center, #000 35%, transparent 72%);
+          mask-image:radial-gradient(ellipse at center, #000 35%, transparent 72%);}
+
+/* ---- engraved double rule ---- */
+.rule{display:flex;align-items:center;gap:14px;margin:1.4rem 0;}
+.rule::before,.rule::after{content:"";flex:1;height:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);}
+.rule span{font-family:'Stardos Stencil';letter-spacing:.35em;white-space:nowrap;font-size:.8rem;}
+
+/* ---- masthead ---- */
+.masthead{border-bottom:6px double var(--ink);border-top:3px solid var(--ink);padding:.9rem 0;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline;}
+.masthead .brand{font-family:'Stardos Stencil';font-weight:700;font-size:clamp(1.1rem,2.6vw,1.6rem);letter-spacing:.14em;}
+.masthead .meta{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;text-align:right;}
+
+/* ---- hero poster ---- */
+.hero{position:relative;text-align:center;padding:2.6rem 0 1rem;}
+.hero-tag{display:inline-block;border:3px solid var(--ink);padding:.3em 1.2em;font-family:'Stardos Stencil';
+  text-transform:uppercase;letter-spacing:.3em;font-size:.82rem;background:var(--paper);
+  box-shadow:inset 0 0 0 1.5px var(--ink);transform:rotate(-1deg);}
+.hero-title{
+  font-family:'Stardos Stencil';font-weight:700;line-height:.92;margin:1.1rem 0 .2rem;
+  font-size:clamp(3.4rem,12vw,8.6rem);letter-spacing:.02em;
+  color:transparent;
+  background-image:radial-gradient(circle, var(--ink) 1.6px, transparent 1.9px);
+  background-size:7px 7px;-webkit-background-clip:text;background-clip:text;
+  filter:drop-shadow(4px 4px 0 rgba(22,19,14,.22));
+}
+.hero-sub{font-family:'IM Fell English',serif;font-style:italic;font-size:clamp(1.15rem,3vw,1.7rem);letter-spacing:.04em;}
+.hero-line{font-family:'Stardos Stencil';letter-spacing:.24em;font-size:.95rem;margin-top:.9rem;text-transform:uppercase;}
+.hero-fig{position:relative;max-width:420px;margin:1.4rem auto 0;}
+.hero-fig svg{width:100%;height:auto;display:block;}
+
+/* ---- stamps ---- */
+.stamp{display:inline-block;padding:.34em 1em;border:3px solid var(--ink);background:var(--paper);
+  font-family:'Stardos Stencil';text-transform:uppercase;letter-spacing:.14em;font-size:.86rem;
+  box-shadow:inset 0 0 0 1px var(--ink);}
+.stamp.red{transform:rotate(-3deg);}
+.stamp.tilt{transform:rotate(2deg);}
+.stamp-xl{font-size:1.05rem;padding:.45em 1.3em;transform:rotate(-1.5deg);}
+
+/* ---- chapter headers ---- */
+.chapter{padding:2.8rem 0 1rem;}
+.chapter-head{display:flex;gap:20px;align-items:center;margin-bottom:.4rem;}
+.chapter-num{
+  flex:0 0 auto;width:92px;height:92px;display:flex;align-items:center;justify-content:center;
+  border:3px solid var(--ink);background:var(--paper-2);position:relative;
+  font-family:'Stardos Stencil';font-weight:700;font-size:3rem;line-height:1;
+  box-shadow:inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--ink);
+}
+.chapter-num::after{content:"";position:absolute;inset:10px;border:1px dashed var(--ink);pointer-events:none;}
+.chapter h2{font-family:'Stardos Stencil';font-size:clamp(1.5rem,4vw,2.6rem);letter-spacing:.03em;line-height:1.05;}
+.chapter .sub{font-family:'IM Fell English',serif;font-style:italic;font-size:1.1rem;color:var(--ink-soft);}
+@media(max-width:560px){
+  .chapter-num{width:70px;height:70px;font-size:2.2rem;}
+}
+
+/* ---- body typography ---- */
+h3{font-family:'Stardos Stencil';font-size:1.22rem;letter-spacing:.05em;margin:1.8rem 0 .7rem;text-transform:uppercase;}
+p{margin:.75rem 0;}
+strong{font-weight:700;}
+em{font-family:'IM Fell English',serif;}
+ul{padding-left:1.4rem;margin:.7rem 0;}
+li{margin:.35rem 0;}
+b.ink{font-family:'Stardos Stencil';letter-spacing:.06em;}
+.dropcap::first-letter{
+  font-family:'Stardos Stencil';font-weight:700;float:left;font-size:3.3em;line-height:.82;
+  padding:.06em .13em 0 0;color:var(--ink);
+}
+
+/* ---- framed panels with corner brackets ---- */
+.frame{position:relative;border:3px solid var(--ink);background:rgba(255,255,255,.32);padding:1.7rem 1.5rem;margin:1.6rem 0;}
+.frame::before{content:"";position:absolute;inset:6px;border:1.5px solid var(--ink);pointer-events:none;}
+.corners{
+  background-image:
+    linear-gradient(var(--ink),var(--ink)),linear-gradient(var(--ink),var(--ink)),
+    linear-gradient(var(--ink),var(--ink)),linear-gradient(var(--ink),var(--ink)),
+    linear-gradient(var(--ink),var(--ink)),linear-gradient(var(--ink),var(--ink)),
+    linear-gradient(var(--ink),var(--ink)),linear-gradient(var(--ink),var(--ink));
+  background-repeat:no-repeat;
+  background-size:18px 4px,4px 18px,18px 4px,4px 18px,18px 4px,4px 18px,18px 4px,4px 18px;
+  background-position:7px 7px,7px 7px,calc(100% - 7px) 7px,calc(100% - 7px) 7px,7px calc(100% - 7px),7px calc(100% - 7px),calc(100% - 7px) calc(100% - 7px),calc(100% - 7px) calc(100% - 7px);
+}
+.frame-title{font-family:'Stardos Stencil';text-transform:uppercase;letter-spacing:.16em;font-size:.95rem;
+  position:absolute;top:-.85em;left:1.2rem;background:var(--paper);padding:0 .6em;border:1.5px solid var(--ink);}
+
+/* ---- pull quote / comic bubble ---- */
+.pullquote{font-family:'IM Fell English',serif;font-style:italic;font-size:clamp(1.2rem,2.6vw,1.55rem);
+  text-align:center;margin:1.8rem 0;line-height:1.5;}
+.pullquote::before,.pullquote::after{content:"❦";font-style:normal;margin:0 .5em;font-size:.8em;}
+.bubble{position:relative;background:var(--paper-2);border:3px solid var(--ink);padding:1.1rem 1.4rem;
+  font-family:'IM Fell English',serif;font-style:italic;font-size:1.18rem;text-align:center;margin:2rem 0;box-shadow:4px 4px 0 rgba(22,19,14,.18);}
+.bubble::after{content:"";position:absolute;left:22%;bottom:-19px;border:10px solid transparent;
+  border-top:14px solid var(--ink);border-bottom:none;}
+.bubble::before{content:"";position:absolute;left:calc(22% + 4px);bottom:-12px;border:8px solid transparent;
+  border-top:11px solid var(--paper-2);border-bottom:none;z-index:1;}
+
+/* ---- tables as engraved plates ---- */
+table{width:100%;border-collapse:collapse;margin:1.2rem 0;font-size:.95rem;}
+caption{caption-side:top;font-family:'Stardos Stencil';text-transform:uppercase;letter-spacing:.18em;
+  font-size:.85rem;padding:.5em 0;text-align:center;border-bottom:2px solid var(--ink);margin-bottom:6px;}
+th{font-family:'Stardos Stencil';text-transform:uppercase;letter-spacing:.08em;font-size:.85rem;
+  border:2px solid var(--ink);padding:.55em .7em;background:var(--paper-2);text-align:left;}
+td{border:1px solid var(--ink);padding:.5em .7em;vertical-align:top;}
+tbody tr:nth-child(even){background:rgba(22,19,14,.05);}
+table .dots{background-image:radial-gradient(circle, rgba(22,19,14,.55) 1px, transparent 1.15px);background-size:5px 5px;}
+
+/* ---- checklist ---- */
+.checklist{list-style:none;padding:0;margin:1rem 0;}
+.checklist li{padding:.3rem 0 .3rem 2.1rem;position:relative;}
+.checklist li::before{content:"☐";position:absolute;left:0;font-size:1.25rem;top:.12rem;}
+.checklist li.done::before{content:"✕";font-family:'Stardos Stencil';font-weight:700;font-size:1.3rem;}
+
+/* ---- danger list ---- */
+.avoid{list-style:none;padding:0;margin:1rem 0;}
+.avoid li{padding:.45rem .9rem .45rem 2.4rem;position:relative;border-bottom:1px dashed var(--line);}
+.avoid li:last-child{border-bottom:none;}
+.avoid li::before{content:"✕";font-family:'Stardos Stencil';font-weight:700;font-size:1.35rem;
+  position:absolute;left:.55rem;top:.15rem;}
+
+/* ---- cut strip between chapters ---- */
+.cutstrip{display:flex;align-items:center;gap:10px;margin:1rem 0;color:var(--ink-soft);}
+.cutstrip::before,.cutstrip::after{content:"";flex:1;border-top:2px dashed var(--ink-soft);}
+.cutstrip span{font-family:'Stardos Stencil';letter-spacing:.2em;font-size:.72rem;text-transform:uppercase;white-space:nowrap;}
+
+/* ---- grid helpers ---- */
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px;}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px;}
+.center{text-align:center;}
+
+/* ---- TOC ---- */
+.toc{border:3px solid var(--ink);padding:1.6rem 1.8rem;margin:2rem 0;position:relative;background:rgba(255,255,255,.25);}
+.toc::before{content:"";position:absolute;inset:6px;border:1.5px solid var(--ink);pointer-events:none;}
+.toc h2{font-family:'Stardos Stencil';text-align:center;letter-spacing:.3em;font-size:1.15rem;margin-bottom:1rem;text-transform:uppercase;}
+.toc ol{list-style:none;counter-reset:ch;padding:0;}
+.toc li{display:flex;align-items:baseline;gap:10px;padding:.4rem 0;border-bottom:1px dotted var(--line);}
+.toc li:last-child{border-bottom:none;}
+.toc li::before{counter-increment:ch;content:counter(ch,upper-roman);font-family:'Stardos Stencil';font-weight:700;font-size:.95rem;flex:0 0 auto;}
+.toc a{color:var(--ink);text-decoration:none;flex:1;}
+.toc a:hover{text-decoration:underline;}
+.toc .pg{font-family:'Stardos Stencil';font-size:.8rem;}
+
+/* ---- icon medallions ---- */
+.medal{width:108px;height:108px;border:3px solid var(--ink);border-radius:50%;background:var(--paper-2);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;position:relative;
+  box-shadow:inset 0 0 0 4px var(--paper), inset 0 0 0 5px var(--ink);}
+.medal svg{width:64%;height:64%;}
+.card{text-align:center;}
+.card p{font-size:.92rem;}
+
+/* ---- footer colophon ---- */
+.colophon{border-top:6px double var(--ink);margin-top:3rem;padding:1.6rem 0 2.4rem;text-align:center;}
+.colophon .crest{font-size:1.5rem;letter-spacing:1em;margin-bottom:.6rem;}
+.colophon p{font-size:.85rem;color:var(--ink-soft);}
+.colophon .small{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;margin-top:.8rem;}
+
+/* ---- responsive ---- */
+@media(max-width:640px){
+  .frame{padding:1.3rem 1rem;}
+  .hero{padding-top:2rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ============ MASTHEAD ============ -->
+  <header class="masthead" style="margin-top:18px;">
+    <div class="brand">✦ TẠP CHÍ CƠ THỂ ✦</div>
+    <div class="meta">Số 01 — Ấn phẩm đặc biệt<br>MIỄN PHÍ · Dành cho người quyết tâm</div>
+  </header>
+
+  <!-- ============ HERO POSTER ============ -->
+  <section class="hero">
+    <span class="hero-tag">Ấn phẩm sức khỏe &amp; tập luyện</span>
+    <h1 class="hero-title">SÁU MÚI</h1>
+    <p class="hero-sub">Cẩm nang toàn diện — từ ăn uống, tập luyện đến giáo án chất lượng</p>
+    <p class="hero-line">— Không phải chuyện may mắn. Là khoa học &amp; mồ hôi. —</p>
+
+    <div class="hero-fig">
+      <!-- Dramatic silhouette: athlete pressing barbell, halftone sun, stippled ink -->
+      <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Silhouette của vận động viên nâng tạ qua đầu">
+        <defs>
+          <pattern id="hpSun" width="9" height="9" patternUnits="userSpaceOnUse">
+            <circle cx="4.5" cy="4.5" r="2.1" fill="#16130e"/>
+          </pattern>
+          <pattern id="hpStip" width="6" height="6" patternUnits="userSpaceOnUse">
+            <circle cx="3" cy="3" r="1.25" fill="#f1ebdc"/>
+          </pattern>
+          <clipPath id="hpFig">
+            <g stroke-width="20" stroke-linejoin="round" stroke-linecap="round">
+              <circle cx="200" cy="145" r="24"/>
+              <path d="M178 195 L222 195 L228 268 L172 268 Z"/>
+              <path d="M187 200 L128 96" stroke-width="20" fill="none"/>
+              <path d="M213 200 L272 96" stroke-width="20" fill="none"/>
+              <rect x="78" y="78" width="244" height="14"/>
+              <rect x="88" y="44" width="30" height="82"/>
+              <rect x="126" y="52" width="14" height="66"/>
+              <rect x="282" y="44" width="30" height="82"/>
+              <rect x="260" y="52" width="14" height="66"/>
+              <path d="M186 262 L174 436" stroke-width="20" fill="none"/>
+              <path d="M214 262 L226 436" stroke-width="20" fill="none"/>
+              <path d="M158 434 L190 442" stroke-width="16" fill="none"/>
+              <path d="M210 442 L242 434" stroke-width="16" fill="none"/>
+            </g>
+          </clipPath>
+        </defs>
+        <!-- halftone sun -->
+        <circle cx="200" cy="222" r="162" fill="url(#hpSun)"/>
+        <!-- rays -->
+        <g stroke="#16130e" stroke-width="4" stroke-linecap="round" opacity=".85">
+          <line x1="26" y1="60" x2="70" y2="104"/>
+          <line x1="374" y1="60" x2="330" y2="104"/>
+          <line x1="26" y1="400" x2="72" y2="356"/>
+          <line x1="374" y1="400" x2="328" y2="356"/>
+        </g>
+        <!-- figure -->
+        <g fill="#16130e" stroke="#16130e" stroke-width="20" stroke-linejoin="round" stroke-linecap="round">
+          <circle cx="200" cy="145" r="24"/>
+          <path d="M178 195 L222 195 L228 268 L172 268 Z"/>
+          <path d="M187 200 L128 96" fill="none"/>
+          <path d="M213 200 L272 96" fill="none"/>
+          <rect x="78" y="78" width="244" height="14"/>
+          <rect x="88" y="44" width="30" height="82"/>
+          <rect x="126" y="52" width="14" height="66"/>
+          <rect x="282" y="44" width="30" height="82"/>
+          <rect x="260" y="52" width="14" height="66"/>
+          <path d="M186 262 L174 436" fill="none"/>
+          <path d="M214 262 L226 436" fill="none"/>
+          <path d="M158 434 L190 442" stroke-width="16" fill="none"/>
+          <path d="M210 442 L242 434" stroke-width="16" fill="none"/>
+        </g>
+        <!-- stipple punch-out inside the figure -->
+        <rect x="60" y="30" width="280" height="450" fill="url(#hpStip)" clip-path="url(#hpFig)"/>
+        <!-- ground -->
+        <line x1="56" y1="458" x2="344" y2="458" stroke="#16130e" stroke-width="7" stroke-linecap="round"/>
+        <g stroke="#16130e" stroke-width="3" stroke-linecap="round">
+          <line x1="80" y1="452" x2="80" y2="462"/><line x1="104" y1="452" x2="104" y2="462"/>
+          <line x1="128" y1="452" x2="128" y2="462"/><line x1="272" y1="452" x2="272" y2="462"/>
+          <line x1="296" y1="452" x2="296" y2="462"/><line x1="320" y1="452" x2="320" y2="462"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="center" style="margin-top:1.6rem;">
+      <span class="stamp red stamp-xl">Giá: 0 ₫ — trả bằng mồ hôi</span>
+      &nbsp;&nbsp;
+      <span class="stamp tilt stamp-xl">Bắt đầu ngay hôm nay</span>
+    </div>
+  </section>
+
+  <!-- ============ INTRO + TOC ============ -->
+  <section class="chapter" id="mo-dau" style="padding-top:1rem;">
+    <p class="dropcap">Bạn có biết câu nói: <b class="ink">“Sáu múi được tạo ra ở phòng gym, nhưng chỉ lộ ra ở nhà bếp”</b> không? Đó không phải lời nói cho vui — đó là nguyên lý khoa học. Ai cũng có cơ bụng. Đúng vậy, <strong>100% con người đều có cơ bụng</strong> (cơ thẳng bụng — rectus abdominis). Vấn đề chỉ là: cơ bụng của bạn có <em>đủ dày</em> để nhìn thấy, và lớp mỡ che phủ có <em>đủ mỏng</em> để lộ ra hay không.</p>
+    <p>Nói cách khác, hành trình đến 6 múi chỉ gói gọn trong 2 công việc:</p>
+    <div class="grid-2">
+      <div class="frame corners" style="margin:1rem 0;">
+        <span class="frame-title">Công việc số 1</span>
+        <p style="margin-top:.6rem;"><b class="ink">ĐỐT MỠ</b> để lớp mỡ bụng mỏng xuống → nhờ <strong>ĂN UỐNG</strong><br><em>chiếm ~70% thành công</em></p>
+      </div>
+      <div class="frame corners" style="margin:1rem 0;">
+        <span class="frame-title">Công việc số 2</span>
+        <p style="margin-top:.6rem;"><b class="ink">XÂY CƠ</b> để cơ bụng dày và rõ nét → nhờ <strong>TẬP LUYỆN</strong><br><em>chiếm ~30% còn lại</em></p>
+      </div>
+    </div>
+
+    <div class="toc">
+      <h2>— Mục lục —</h2>
+      <ol>
+        <li><a href="#chuong-1">Nhà bếp — 70% thành công</a><span class="pg">tr.01</span></li>
+        <li><a href="#chuong-2">Phòng tập — 30% còn lại</a><span class="pg">tr.04</span></li>
+        <li><a href="#chuong-3">Giáo án — lộ trình 8 tuần</a><span class="pg">tr.07</span></li>
+        <li><a href="#chuong-4">Lối sống — ẩn số bị bỏ quên</a><span class="pg">tr.11</span></li>
+        <li><a href="#chuong-5">Bản đồ 3 bước đến 6 múi</a><span class="pg">tr.13</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ CHƯƠNG I: ĂN UỐNG ============ -->
+  <section class="chapter" id="chuong-1">
+    <div class="chapter-head">
+      <div class="chapter-num dots">I</div>
+      <div>
+        <h2>Nhà Bếp — 70% Thành Công</h2>
+        <p class="sub">Trận đánh quyết định diễn ra trên bàn ăn</p>
+      </div>
+    </div>
+    <div class="rule"><span>✦ ✦ ✦</span></div>
+
+    <h3>Nguyên tắc số 1 · Thâm hụt calo</h3>
+    <p>Cơ thể chỉ đốt mỡ khi <strong>nạp vào ít hơn tiêu hao</strong>. Đây là quy luật bất biến — dù là keto, nhịn ăn gián đoạn hay bất kỳ chế độ nào, tất cả đều hoạt động vì cuối cùng chúng tạo ra thâm hụt calo.</p>
+    <div class="frame dots-fade" style="text-align:center;">
+      <p style="margin:.2rem 0;"><b class="ink">CÔNG THỨC NHANH:</b> Cân nặng (kg) × 30 = calo duy trì</p>
+      <p style="margin:.2rem 0;">Người 70kg → 70 × 30 = <b class="ink">2.100 calo/ngày</b> để giữ nguyên cân</p>
+      <p style="margin:.2rem 0;">Để giảm mỡ: ăn ít hơn <b class="ink">300–500 calo</b> so với mức duy trì</p>
+      <p style="margin:.2rem 0;font-size:.9rem;"><em>⚠ Đừng cắt quá sâu (dưới 1.200 calo) — sẽ mất cơ, mệt mỏi, tụt hormone.</em></p>
+    </div>
+    <div class="bubble">“Đừng đoán calo — hãy dùng app như MyFitnessPal trong 2 tuần đầu. Sự thật thường gây sốc: ‘ăn ít’ mà bạn nghĩ thực ra không ít chút nào.”</div>
+
+    <h3>Nguyên tắc số 2 · Nạp đủ protein — “vật liệu xây cơ”</h3>
+    <p>Protein giúp <strong>giữ cơ khi giảm mỡ</strong> và tạo cảm giác no lâu. Mục tiêu: <b class="ink">1.6 – 2.2g protein / kg cân nặng / ngày</b> — ví dụ người 70kg cần ~112–154g mỗi ngày.</p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="medal"><svg viewBox="0 0 100 100"><circle cx="50" cy="55" r="30" fill="#16130e"/><circle cx="72" cy="48" r="12" fill="#f1ebdc"/><path d="M50 26 C50 20 44 16 38 18 C34 19 32 24 34 28 C36 32 42 34 46 30 C48 28 50 28 50 26 Z" fill="#16130e"/></svg></div>
+        <p><b class="ink">TRỨNG</b><br>2 quả ≈ 12g protein</p>
+      </div>
+      <div class="card">
+        <div class="medal"><svg viewBox="0 0 100 100"><rect x="18" y="34" width="64" height="46" rx="6" fill="#16130e"/><circle cx="34" cy="57" r="13" fill="#f1ebdc"/><circle cx="66" cy="57" r="13" fill="#f1ebdc"/></svg></div>
+        <p><b class="ink">ỨC GÀ</b><br>100g ≈ 31g protein</p>
+      </div>
+      <div class="card">
+        <div class="medal"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="#16130e"/><path d="M50 8 C46 18 54 26 50 34" stroke="#16130e" stroke-width="5" fill="none"/><path d="M40 20 C46 26 54 24 60 28" stroke="#16130e" stroke-width="5" fill="none"/></svg></div>
+        <p><b class="ink">SỮA &amp; SỮA CHUA</b><br>không đường, ít béo</p>
+      </div>
+      <div class="card">
+        <div class="medal"><svg viewBox="0 0 100 100"><path d="M18 62 C18 38 82 38 82 62 C82 74 18 74 18 62 Z" fill="#16130e"/><path d="M28 58 C28 52 34 50 38 54" stroke="#f1ebdc" stroke-width="4" fill="none" stroke-linecap="round"/></svg></div>
+        <p><b class="ink">CÁ</b><br>cá basa, cá thu, cá ngừ</p>
+      </div>
+      <div class="card">
+        <div class="medal"><svg viewBox="0 0 100 100"><ellipse cx="50" cy="58" rx="26" ry="22" fill="#16130e"/><rect x="44" y="14" width="12" height="22" fill="#16130e"/><circle cx="52" cy="10" r="6" fill="#16130e"/></svg></div>
+        <p><b class="ink">ĐẬU PHỤ &amp; CÁC LOẠI ĐẬU</b><br>nguồn protein thực vật</p>
+      </div>
+      <div class="card">
+        <div class="medal"><svg viewBox="0 0 100 100"><path d="M30 78 L46 40 L54 40 L70 78 Z" fill="#16130e"/><path d="M50 40 L50 30" stroke="#16130e" stroke-width="6" stroke-linecap="round"/><circle cx="50" cy="24" r="6" fill="#16130e"/></svg></div>
+        <p><b class="ink">TÔM · MỰC · ỐC</b><br>đồ biển Việt Nam — quá trời lựa chọn!</p>
+      </div>
+    </div>
+
+    <h3>Chia “macro” đơn giản cho người bận rộn</h3>
+    <p>Không cần cân đo từng gram. Chỉ cần nắm quy tắc <b class="ink">đĩa ăn chuẩn</b> cho mỗi bữa:</p>
+    <table>
+      <caption>Bố cục đĩa ăn chuẩn</caption>
+      <thead>
+        <tr><th>Thành phần</th><th>Tỷ lệ trên đĩa</th><th>Ví dụ thực tế</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Protein</b></td><td>1/2 đĩa</td><td>Thịt, cá, trứng, đậu</td></tr>
+        <tr><td><b>Rau xanh</b></td><td>1/4 đĩa</td><td>Rau luộc, salad, canh rau</td></tr>
+        <tr><td><b>Tinh bột</b></td><td>1/4 đĩa</td><td>Cơm, khoai, bún, phở</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Gợi ý thực đơn 1 ngày (~1.700–1.800 calo)</h3>
+    <div class="frame corners">
+      <span class="frame-title">Thực đơn mẫu</span>
+      <table style="margin-top:1.1rem;">
+        <thead>
+          <tr><th>Bữa</th><th>Giờ</th><th>Món</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Sáng</b></td><td>7h</td><td>2 trứng ốp + bánh mì nguyên cám + 1 ly sữa không đường</td></tr>
+          <tr><td><b>Trưa</b></td><td>12h</td><td>150g ức gà nướng + cơm gạo lứt + rau luộc thoải mái</td></tr>
+          <tr><td><b>Phụ</b></td><td>15h30</td><td>Sữa chua không đường + 1 nắm hạt (≤15 hạt)</td></tr>
+          <tr><td><b>Tối</b></td><td>19h</td><td>150g cá + 1 củ khoai luộc + salad dầu ô liu</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="frame" style="background:var(--paper-2);">
+      <span class="frame-title">⚠ Kẻ thù của 6 múi</span>
+      <ul class="avoid" style="margin-top:1rem;">
+        <li><b class="ink">Nước ngọt, trà sữa, bia rượu</b> — “calo lỏng” không no nhưng tích mỡ cực nhanh</li>
+        <li><b class="ink">Đồ chiên rán, thức ăn nhanh</b></li>
+        <li><b class="ink">Ăn khuya sau 21h</b></li>
+        <li><b class="ink">Bỏ bữa</b> — càng nhịn càng thèm, càng dễ “bùng nổ” vào bữa sau</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="cutstrip"><span>✂ ——— cắt &amp; dán vào tủ lạnh ——— ✂</span></div>
+
+  <!-- ============ CHƯƠNG II: TẬP LUYỆN ============ -->
+  <section class="chapter" id="chuong-2">
+    <div class="chapter-head">
+      <div class="chapter-num dots">II</div>
+      <div>
+        <h2>Phòng Tập — 30% Còn Lại</h2>
+        <p class="sub">Xây cơ bụng dày và rõ nét</p>
+      </div>
+    </div>
+    <div class="rule"><span>✦ ✦ ✦</span></div>
+
+    <h3>Hiểu đúng: không có “bài tập đốt mỡ bụng tại chỗ”</h3>
+    <p class="dropcap">Có một sự thật phũ phàng: <strong>gập bụng 1.000 cái/ngày không làm mỡ bụng tan bớt một gram</strong>. Mỡ được đốt toàn thân, theo di truyền của từng người (với nam thường là mặt và bụng đốt sau cùng). Chiến lược đúng là:</p>
+    <ol style="padding-left:1.5rem;margin:.7rem 0;">
+      <li><b class="ink">Tập tạ toàn thân</b> (squat, deadlift, push-up, pull-up...) → đốt nhiều calo, tăng trao đổi chất.</li>
+      <li><b class="ink">Tập core riêng</b> → làm cơ bụng dày lên → khi mỡ mỏng, cơ sẽ “bắn” ra rõ nét.</li>
+    </ol>
+
+    <h3>Các bài tập bụng tốt nhất (chọn 3–4 bài mỗi buổi)</h3>
+    <div class="grid-2">
+      <div class="frame corners">
+        <span class="frame-title">Nhóm cơ bụng trên – dưới</span>
+        <ul class="checklist" style="margin-top:1rem;">
+          <li class="done"><b>Leg Raise</b> (nâng chân treo xà) — trị giá nhất cho cơ bụng dưới</li>
+          <li class="done"><b>Plank</b> (ván) — siêu bền cho toàn bộ core, giữ 45–60 giây</li>
+          <li class="done"><b>Crunch</b> / gập bụng — tập chậm, có kiểm soát</li>
+          <li class="done"><b>Bicycle Crunch</b> — kết hợp xoay người, tác động cơ chéo</li>
+        </ul>
+      </div>
+      <div class="frame corners">
+        <span class="frame-title">Nhóm cơ chéo + nền tảng</span>
+        <ul class="checklist" style="margin-top:1rem;">
+          <li class="done"><b>Russian Twist</b> — xoay người với tạ đĩa</li>
+          <li class="done"><b>Side Plank</b> — ván nghiêng, eo thon hơn</li>
+          <li class="done"><b>Squat · Deadlift · Push-up</b> — cơ bụng là “dây đai” giữ cơ thể</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Nguyên tắc tiến bộ: Progressive Overload</h3>
+    <p>Cơ bụng cũng như mọi cơ khác — <strong>không có đau, không có tăng trưởng</strong>. Mỗi tuần hãy tăng độ khó một chút:</p>
+    <table>
+      <caption>Cách tăng độ khó từng tuần</caption>
+      <thead>
+        <tr><th>Cách tăng</th><th>Ví dụ</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Tăng số lần / số hiệp</td><td>3×10 → 3×12 → 4×12</td></tr>
+        <tr><td>Tăng thời gian plank</td><td>45s → 60s → 75s</td></tr>
+        <tr><td>Thêm tạ</td><td>Ôm tạ đĩa vào ngực khi gập bụng</td></tr>
+        <tr><td>Giảm thời gian nghỉ</td><td>90s → 60s → 45s</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="cutstrip"><span>✂ ——— cắt &amp; dán vào gương phòng tập ——— ✂</span></div>
+
+  <!-- ============ CHƯƠNG III: GIÁO ÁN ============ -->
+  <section class="chapter" id="chuong-3">
+    <div class="chapter-head">
+      <div class="chapter-num dots">III</div>
+      <div>
+        <h2>Giáo Án — Lộ Trình 8 Tuần</h2>
+        <p class="sub">Tập bừa là lý do số 1 khiến 90% người bỏ cuộc</p>
+      </div>
+    </div>
+    <div class="rule"><span>✦ ✦ ✦</span></div>
+
+    <div class="bubble">Giáo án này được thiết kế theo nguyên tắc: <b>đơn giản · có tiến bộ · không cần phòng gym đắt tiền.</b></div>
+
+    <h3>Lịch tập 4 buổi/tuần (mỗi buổi 45–60 phút)</h3>
+    <div class="frame">
+      <span class="frame-title">Thứ 2 &amp; Thứ 6 · Toàn thân A</span>
+      <ul class="checklist" style="margin-top:1rem;">
+        <li class="done">Squat — 4 hiệp × 10–12 lần</li>
+        <li class="done">Push-up — 4 hiệp × 8–15 lần</li>
+        <li class="done">Leg Raise treo xà — 4 hiệp × 10–15 lần</li>
+        <li class="done">Plank — 3 hiệp × 45–60 giây</li>
+      </ul>
+      <p style="font-size:.9rem;color:var(--ink-soft);"><em>Thứ 6 lặp lại nhưng tăng 2–3 lần lặp mỗi hiệp hoặc giảm thời gian nghỉ.</em></p>
+    </div>
+    <div class="frame">
+      <span class="frame-title">Thứ 4 · Toàn thân B</span>
+      <ul class="checklist" style="margin-top:1rem;">
+        <li class="done">Deadlift (tạ đòn hoặc tạ ấm) — 4 hiệp × 8 lần</li>
+        <li class="done">Pull-up (hoặc kéo tạ) — 4 hiệp × 6–10 lần</li>
+        <li class="done">Bicycle Crunch — 4 hiệp × 20 lần (mỗi bên 10)</li>
+        <li class="done">Side Plank — 3 hiệp × 30–45 giây mỗi bên</li>
+      </ul>
+    </div>
+    <div class="frame">
+      <span class="frame-title">Chủ nhật · Cardio + Core</span>
+      <ul class="checklist" style="margin-top:1rem;">
+        <li class="done">Chạy bộ / đạp xe / nhảy dây — 30 phút nhịp độ vừa</li>
+        <li class="done">Russian Twist — 3 hiệp × 20 lần</li>
+        <li class="done">Plank — 3 hiệp × hết sức</li>
+      </ul>
+      <p style="font-size:.9rem;color:var(--ink-soft);"><em>Thứ 3 · 5 · 7: nghỉ ngơi hoặc đi bộ nhẹ 30 phút. Cơ bụng to lên khi nghỉ, không phải khi tập!</em></p>
+    </div>
+
+    <h3>Checklist chất lượng mỗi buổi tập</h3>
+    <div class="grid-2">
+      <ul class="checklist">
+        <li>Khởi động 5–10 phút (nhảy dây, xoay khớp) — chống chấn thương</li>
+        <li>Tập đúng kỹ thuật hơn tập nhiều — chất lượng hơn số lượng</li>
+        <li>Thở đều: <b>thở ra khi gắng sức, hít vào khi thả lỏng</b></li>
+      </ul>
+      <ul class="checklist">
+        <li>Không nghỉ quá 90 giây giữa các hiệp</li>
+        <li>Ghi chép số hiệp/số lần vào sổ tay — theo dõi là chìa khóa tiến bộ</li>
+        <li>Uống đủ 2–2.5 lít nước/ngày</li>
+      </ul>
+    </div>
+
+    <h3>Các sai lầm phổ biến cần tránh</h3>
+    <table>
+      <caption>Bảng tra cứu sai lầm</caption>
+      <thead>
+        <tr><th>Sai lầm</th><th>Hậu quả</th><th>Cách sửa</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Chỉ tập bụng mỗi ngày</td><td>Mất cân bằng, đau lưng, không giảm mỡ</td><td>Tập core 3–4 buổi/tuần, xen kẽ tạ toàn thân</td></tr>
+        <tr><td>Gập bụng sai tư thế (giật người)</td><td>Đau cổ, đau lưng dưới</td><td>Cằm cách ngực 1 nắm tay, lên-xuống chậm 2 giây</td></tr>
+        <tr><td>Bỏ qua việc ăn uống</td><td>Tập mệt mà mỡ không giảm</td><td>70% là nhà bếp — nhắc lại lần nữa!</td></tr>
+        <tr><td>Không ngủ đủ giấc</td><td>Cortisol tăng → tích mỡ bụng</td><td>Ngủ 7–8 tiếng, đi ngủ trước 23h</td></tr>
+        <tr><td>Kỳ vọng kết quả sau 2 tuần</td><td>Bỏ cuộc giữa chừng</td><td>Sáu múi là hành trình 3–6 tháng</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="cutstrip"><span>✂ ——— cắt &amp; dán vào giường ngủ ——— ✂</span></div>
+
+  <!-- ============ CHƯƠNG IV: LỐI SỐNG ============ -->
+  <section class="chapter" id="chuong-4">
+    <div class="chapter-head">
+      <div class="chapter-num dots">IV</div>
+      <div>
+        <h2>Lối Sống — Ẩn Số Bị Bỏ Quên</h2>
+        <p class="sub">“Liều doping” miễn phí mà ít ai dùng</p>
+      </div>
+    </div>
+    <div class="rule"><span>✦ ✦ ✦</span></div>
+
+    <div class="grid-2">
+      <div class="frame corners">
+        <span class="frame-title">Giấc ngủ</span>
+        <p style="margin-top:.8rem;">Ngủ ít → hormone cortisol tăng → cơ thể có xu hướng <strong>tích mỡ bụng và giữ nước</strong>. Ngủ đủ 7–8 tiếng → cơ bắp phục hồi, hormone tăng trưởng tiết ra, kiểm soát cơn thèm ăn tốt hơn.</p>
+      </div>
+      <div class="frame corners">
+        <span class="frame-title">Giảm stress</span>
+        <p style="margin-top:.8rem;">Stress mãn tính = cortisol cao = <strong>mỡ bụng khó tan</strong>. Hãy đi bộ, nghe nhạc, thiền 10 phút mỗi ngày.</p>
+      </div>
+    </div>
+
+    <div class="frame" style="background:var(--paper-2);">
+      <span class="frame-title">Kiên trì hơn hoàn hảo</span>
+      <p style="margin-top:.8rem;">Bạn sẽ có ngày “phá vỡ” chế độ — ăn một bữa phở đặc biệt, bỏ một buổi tập. <strong>Không sao cả.</strong> Sai một ngày không phải sai cả tuần — quay lại ngay hôm sau mới là người chiến thắng.</p>
+    </div>
+
+    <p class="pullquote">Cơ bụng không được tạo ra từ máy tập — chúng được tạo ra từ quyết tâm mỗi sáng thức dậy và lựa chọn mỗi bữa ăn.</p>
+  </section>
+
+  <div class="cutstrip"><span>✂ ——— cắt &amp; dán lên tường — 90 ngày nữa bạn sẽ cảm ơn mình ——— ✂</span></div>
+
+  <!-- ============ CHƯƠNG V: KẾT LUẬN ============ -->
+  <section class="chapter" id="chuong-5">
+    <div class="chapter-head">
+      <div class="chapter-num dots">V</div>
+      <div>
+        <h2>Bản Đồ 3 Bước Đến 6 Múi</h2>
+        <p class="sub">In ra. Dán lên tường. Làm theo.</p>
+      </div>
+    </div>
+    <div class="rule"><span>✦ ✦ ✦</span></div>
+
+    <div class="grid-3">
+      <div class="card">
+        <div class="medal"><svg viewBox="0 0 100 100"><circle cx="50" cy="52" r="30" fill="#16130e"/><path d="M50 6 C46 16 54 24 50 32" stroke="#16130e" stroke-width="5" fill="none"/><circle cx="42" cy="14" r="5" fill="#f1ebdc"/><circle cx="60" cy="10" r="4" fill="#f1ebdc"/></svg></div>
+        <p><b class="ink">BƯỚC 1 · ĂN</b><br>Thâm hụt 300–500 calo, protein 1.6–2.2g/kg, bỏ nước ngọt &amp; đồ chiên rán.</p>
+      </div>
+      <div class="card">
+        <div class="medal"><svg viewBox="0 0 100 100"><rect x="18" y="40" width="64" height="12" rx="3" fill="#16130e"/><rect x="24" y="26" width="14" height="40" fill="#16130e"/><rect x="62" y="26" width="14" height="40" fill="#16130e"/></svg></div>
+        <p><b class="ink">BƯỚC 2 · TẬP</b><br>4 buổi/tuần theo giáo án — tạ toàn thân + 3–4 bài core, tăng độ khó mỗi tuần.</p>
+      </div>
+      <div class="card">
+        <div class="medal"><svg viewBox="0 0 100 100"><path d="M50 14 L90 34 L50 86 L10 34 Z" fill="#16130e"/><circle cx="50" cy="40" r="8" fill="#f1ebdc"/></svg></div>
+        <p><b class="ink">BƯỚC 3 · SỐNG</b><br>Ngủ đủ, giảm stress, kiên trì tối thiểu 12 tuần trước khi đánh giá lại.</p>
+      </div>
+    </div>
+
+    <div class="frame corners center" style="margin-top:2rem;">
+      <span class="frame-title">Hành động hôm nay</span>
+      <p style="margin-top:.9rem;font-size:1.05rem;">Chụp ảnh <b class="ink">trước – sau</b> ngay hôm nay, đo vòng bụng, rồi nhìn lại sau <b class="ink">30 · 60 · 90 ngày</b>. Sự khác biệt sẽ khiến chính bạn ngạc nhiên.</p>
+      <p style="margin-top:.6rem;"><span class="stamp stamp-xl">Bắt đầu ngay hôm nay 💪</span></p>
+    </div>
+
+    <div class="center" style="margin:2.4rem 0 0;">
+      <span class="stamp red" style="font-size:1rem;padding:.5em 1.4em;">90 ngày nữa — bạn sẽ cảm ơn chính mình</span>
+    </div>
+  </section>
+
+  <!-- ============ COLOPHON ============ -->
+  <footer class="colophon">
+    <div class="crest">✦ ✦ ✦</div>
+    <p><b class="ink">TẠP CHÍ CƠ THỂ</b> — Số 01 · Ấn bản kỹ thuật số</p>
+    <p>Được “khắc” bằng mực và mồ hôi · Tái bản tự do, không cần xin phép — chỉ cần tập luyện.</p>
+    <p class="small">BÀI VIẾT MANG TÍNH THAM KHẢO GIÁO DỤC · NẾU BẠN CÓ BỆNH LÝ NỀN (TIM MẠCH, TIỂU ĐƯỜNG, HUYẾT ÁP…), HÃY THAM KHẢO Ý KIẾN BÁC SĨ TRƯỚC KHI BẮT ĐẦU CHẾ ĐỘ ĂN VÀ TẬP LUYỆN MỚI.</p>
+  </footer>
+
+</div>
+</body>
+</html>
